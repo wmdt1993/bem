@@ -1,0 +1,1 @@
+//# sourceMappingURL=trader.short.interface.js.map

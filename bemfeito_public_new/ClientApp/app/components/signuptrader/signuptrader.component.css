@@ -1,0 +1,54 @@
+.custom-mat-form {
+    min-width: 250px;
+    width: 28vw;
+    text-align: center;
+  }
+  
+  .mat-field-full-width {
+    width: 100%;
+    text-align: left;
+  }
+
+  .custom-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: calc(9vh + 1.5rem);
+    margin-bottom: 2vh;
+  }
+
+  .mat-loading-position{
+    position: absolute;
+    top: calc(9vh + 1.5rem);
+  } 
+
+  .sign-up-text{
+      margin-bottom:1em;
+  }
+  
+  .contact-text-label{
+    width: 100%;
+    color: gray;
+    font-size: 1.05em;
+  }
+
+  .contact-slides{
+    width: 100%;
+    margin: .25em 0;
+  }
+
+  .create-btn{
+    margin:1em;
+  }
+
+  .help-outline-icon{
+    color: #ffc107;
+  }
+
+  .check-circle-outline-icon{
+    color:#28a745;
+  }
+
+  .highlight-off-icon{
+    color: #dc3545;
+  }

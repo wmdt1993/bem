@@ -1,0 +1,298 @@
+#feedback-title {
+    color: #4e4e4e;
+    padding-top: 6rem;
+    padding-left: 15%;
+    padding-bottom: 10px;
+    background-color: #2125290d;
+}
+
+.form-stepper {
+    padding: 50px 150px 10px 150px;
+    border-radius: 15px;
+}
+
+.responseNo {
+    background-color: #ececec;
+    color: red;
+    margin: -30px 130px 10px 0px;
+    font-size: 15px;
+    padding: 10px 7px 10px 10px;
+}
+
+.field-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-container > * {
+  width: 100%;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.text-size {
+    font-size: 1rem;
+}
+
+#feedback-descriptions {
+    padding: 25px 15% 20px 15%;
+}
+
+.input-feedback {
+    max-width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(74, 74, 74, 0.19);
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+#input-trader-box {
+    max-width: 50%;
+    /* height: 210px; */
+    margin-left: 25%;
+    /* border-style: outset; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 12%;
+}
+
+#input-trader-title {
+    padding-top: 32px;
+    padding-bottom: 8px;
+}
+
+.mat-form-field {
+    display: block;
+}
+
+.input-trader-form {
+    max-width: 50%;
+    height: 56px;
+    border: solid 1px #808080;
+    background-color: #ffffff;
+    position: relative;
+    padding: 5px;
+}
+
+#feedback-footer {
+    background-color: #dee2e6;
+    padding-bottom: 11px;
+    padding-top: 8px;
+    padding-right: 6%;
+}
+
+#exp-forms {
+    border-left-style: inset;
+    border-left-width: 6px;
+    border-left-color: #4fa6de;
+    border-right-style: none;
+    border-bottom-style: none;
+    /* border-top-style: solid; */
+    border-top-width: -1px;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(74, 74, 74, 0.19);
+    padding-left: 20px;
+}
+
+.work-done-select {
+    margin-left: 22px;
+    max-width: 38%;
+}
+
+.md-input-invalid {
+    color: rgb(221, 44, 0);
+}
+
+.required {
+    color: red;
+}
+
+#selected-trader {
+    padding-left: 30px;
+    margin-top: -15px;
+    height: 120px;
+    border-top-style: groove;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-right-style: inset;
+    max-width: 57%;
+}
+
+#exp-header {
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+.feedback-radio-btn{
+    padding-right: 50px;
+}
+.details-question-statement {
+    padding-top: 20px;
+}
+
+.details-disclaimer {
+    font-size: 0.7rem;
+    padding: 0 15px;
+}
+.details-question-statement-name-prefix {
+    max-width: 16%;
+}
+.details-question-statement-name {
+    max-width: 51%;
+}
+
+
+::ng-deep .mat-radio-button {
+    margin-right: 50px;
+}
+@media screen and (max-width:768px) {
+    h1, .h1 {
+        font-size: 2rem;
+    }
+    h4, .h4 {
+        font-size: 1.5rem;
+    }
+    h5, .h5 {
+        font-size: 1.2rem;
+    }
+    .text-size,
+    div#input-trader-box a {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+    #feedback-title {
+        padding-top: 5rem;
+    }
+    .form-stepper {
+        padding-left: 55px;
+        padding-right: 55px;
+    }
+    .details-disclaimer {
+        font-size: 0.6rem;
+    }
+
+    ::ng-deep .mat-horizontal-stepper-header .mat-step-icon,
+    ::ng-deep .mat-horizontal-stepper-header .mat-step-icon-not-touched {
+        margin: 0 auto !important;
+    }
+    ::ng-deep .mat-step-header {
+        display: block !important;
+    }
+    ::ng-deep .mat-horizontal-stepper-header {
+        padding: 0 10px !important;
+    }
+    ::ng-deep .mat-stepper-horizontal-line {
+        margin: 0px !important;
+        min-width: auto !important;
+    }
+    ::ng-deep .mat-select-value {
+        font-size: 0.8rem !important;
+    }
+    ::ng-deep .mat-form-field-label,
+    ::ng-deep .mat-option-text,
+    ::ng-deep .mat-input-element,
+    ::ng-deep .mat-checkbox,
+    ::ng-deep .mat-error {
+        font-size: 0.8rem !important;
+    }
+    ::ng-deep .mat-select-panel .mat-optgroup-label,
+    ::ng-deep .mat-select-panel .mat-option {
+        height: 2.4em;
+    }
+}
+
+@media screen and (max-width:767px) {
+    div#selected-trader {
+        max-width: 85% !important;
+        margin: 0 auto !important;
+        margin-top: 0px !important;
+        margin-bottom: 15px !important;
+    }
+    .details-question-statement {
+        padding-top: 8px;
+    }
+    .details-question-statement-name-prefix {
+        max-width: 20% !important;
+    }
+    .details-question-statement-name {
+        max-width: 65% !important;
+    }
+    .input-feedback {
+        max-width: 92%;
+    }
+    .question-statement {
+        padding: 0px 5px 5px;
+    }
+    
+}
+@media screen and (max-width:425px) {
+    h1, .h1 {
+        font-size: 1.5rem;
+    }
+    h4, .h4 {
+        font-size: 1.2rem;
+    }
+    h5, .h5 {
+        font-size: 1rem;
+    }
+    .text-size,
+    div#input-trader-box a {
+        font-size: 0.6rem;
+        margin-bottom: 0.6rem;
+    }
+    .form-stepper {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .feedback-radio-btn{
+        padding-right: 15px;
+    }
+    .question-statement {
+        padding-bottom: 15px;
+    }
+    .details-disclaimer {
+        font-size: 0.5rem;
+    }
+    #input-trader-box {
+        max-width: 85%;
+        margin: 0 auto 18px;
+    }
+    #exp-header {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    #feedback-title {
+        padding-top: 5rem;
+    }
+
+    ::ng-deep .mat-select-value {
+        font-size: 0.6rem !important; ;
+    }
+    ::ng-deep .mat-form-field-label,
+    ::ng-deep .mat-option-text,
+    ::ng-deep .mat-input-element,
+    ::ng-deep .mat-checkbox,
+    ::ng-deep .mat-error {
+        font-size: 0.6rem !important;
+    }
+    ::ng-deep .mat-select-panel .mat-optgroup-label,
+    ::ng-deep .mat-select-panel .mat-option {
+        height: 1.8em !important; 
+    }
+
+    ::ng-deep .mat-horizontal-content-container {
+        padding: 0 10px !important;
+    }
+    ::ng-deep .mat-radio-button {
+        margin-right: 8px;
+    }
+
+    .mobile-respo-br{
+        white-space:normal;
+    }
+
+}

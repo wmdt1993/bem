@@ -1,0 +1,52 @@
+<nav [ngClass]="{'has-collapsed':isCollapsed}" class="navbar navbar-expand-md navbar-light fixed-top">
+
+    <a class="navbar-brand" href="#">
+        <img src="/Public/bemfeito-logo-v1.png" alt="Bemfeito" />
+    </a>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul *ngIf="status" class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()" href="#">Logoff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/dashboard">Dashboard</a>
+            </li>
+        </ul>
+        <ul *ngIf="!status" class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/register">Professional Zone</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/login">Consumer Zone</a>
+            </li>
+            <!-- <li>
+                <a class="btn btn-primary" (click)="feedBackTraderRoute()">Leave feedback on a trader</a>
+            </li> -->
+        </ul>
+    </div>
+    <div id="nav-menu-button">
+        <div id="feedback">
+            <button class="btn btn-primary" (click)="feedBackTraderRoute()"><span class="line-break">Leave feedback </span>on a trader</button>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="line-break">Select </span>Language
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="switchLanguage('pt')"><span class="flag-icon flag-icon-gr"></span> Portugese</a>
+                <a class="dropdown-item" (click)="switchLanguage('en')"><span class="flag-icon flag-icon-gr"></span> English</a>
+                <a class="dropdown-item" (click)="switchLanguage('fr')"><span class="flag-icon flag-icon-gr"></span> French</a>
+            </div>
+        </div>
+    </div>
+
+
+    <button class="navbar-toggler d-lg-none" (click)="pushBodyContents()" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='sr-only'>Toggle navigation</span>
+    </button>
+
+</nav>

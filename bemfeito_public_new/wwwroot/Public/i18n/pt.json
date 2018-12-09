@@ -1,0 +1,9 @@
+﻿{
+  "HomePage": {
+    "Title": "2 Translation example",
+    "Intro": "2 Hello I am Arthur, I am 42 years old."
+  },
+  "Hero": {
+    "Intro": "Ajudando você a encontrar o comércio ou serviço certo."
+  }
+}

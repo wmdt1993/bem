@@ -1,0 +1,42 @@
+<ng-container *ngIf="!load">
+    <div id="load-home">
+        <div class="app-loading-home">
+            <div class="logo"></div>
+            <svg class="spinner-home" viewBox="25 25 50 50">
+                <circle class="path-home" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+        <div align="center">
+            <img class="img-loading-home" src="/Public/bemfeito-logo-v1.png" alt="Bemfeito" width="130px" />
+        </div>
+    </div>
+</ng-container>
+
+
+
+
+<div *ngIf="load">
+    <nav-menu></nav-menu>
+
+    <hero></hero>
+
+    <div class='container'>
+        <div class='row about position-sticky'>
+            <div class="col">
+                <h2>Why use Bemfeito?</h2>
+                <p>Search for tradespeople who work near you from anywhere in <strong>Portugal</strong>.</p>
+                <p><strong>Bemfeito is a completely free service</strong>, and you can see the tradespeople's contact information straight away. We don't charge you a penny.</p>
+            </div>
+            <div class="col">
+                <h2>Become a Trusted Trader</h2>
+                <a class="btn btn-primary" routerLink="/signup/trader">Join Bemfeito</a>
+                <a class="btn btn-secondary" href="#">Login to Bemfeito Traders</a>
+                <p>Get endorsed by an independent consumer organsiation.</p>
+                <p>Stand out from the crowd</p>
+            </div>
+        </div>
+    </div>
+
+    <categoryHero></categoryHero>
+    <footer></footer>
+</div>

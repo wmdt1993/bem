@@ -1,0 +1,156 @@
+h1 {
+    margin-bottom: 25px;
+}
+
+.results {
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
+    margin-top: 0;
+    clear: left;
+}
+
+.results__item {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#load-home {
+    background-color: white;
+    height: 500px;
+}
+
+.listing {
+    overflow: hidden;
+    background-color: #f0f0f3;
+    position: relative;
+    margin: 10.5px 5px;
+}
+
+.listing__left-column {
+    background-color: white;
+    padding-right: 20px;
+    margin-right: 76px;
+}
+
+.results__title {
+    margin-bottom: 5px;
+}
+
+#result-content {
+    padding-left: 13%;
+    padding-top: 3%;
+}
+
+.box-content-text {
+    font-size: 14px;
+}
+
+.responsive .results__member-stats {
+    margin-top: 10px;
+}
+
+.results__location {
+    float: left;
+}
+
+.listing__stat .pin-tick--blue,
+.listing__stat .pin-tick--grey {
+    margin-right: 2px;
+}
+
+.results__member-since {
+    float: right;
+}
+
+.listing__right-column {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 76px;
+    height: 100%;
+    -webkit-transition: background-color .3s ease-in-out 0s;
+    -moz-transition: background-color .3s ease-in-out 0s;
+    -o-transition: background-color .3s ease-in-out 0s;
+    transition: background-color .3s ease-in-out 0s;
+}
+
+.results__item .feedback-score__average.feedback-score__average--large {
+    margin-top: 6px;
+    font-size: 22px;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.feedback-score__count {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 1.833333333;
+    color: #4d4f49;
+}
+
+.results__item .feedback-score__average.feedback-score__average--large {
+    margin-top: 6px;
+    font-size: 22px;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.app-loading-home {
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.app-loading-home .spinner-home {
+    height: 200px;
+    width: 200px;
+    /* animation: rotate 2s linear infinite; */
+    transform-origin: center center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.app-loading-home .spinner-home .path-home {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite;
+    stroke-linecap: round;
+    stroke: #33a5de;
+}
+
+.img-loading-home {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}

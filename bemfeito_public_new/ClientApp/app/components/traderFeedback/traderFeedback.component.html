@@ -1,0 +1,1596 @@
+<nav-menu>
+</nav-menu>
+
+<div class="div-padding">
+    <div id="feedback-title">
+      <h1><strong>Give your feedback</strong></h1>
+    </div>
+
+    <div [hidden]="traderFeedbackSearch">
+      <div id="feedback-descriptions">
+        <p class="text-size">
+            <strong>Bemfeito is built on the power of word of mouth</strong>. We rely on feedback 
+            from customers to highlight the quality tradespeople, and isolate the rogues. So help 
+            us promote good workmanship by sharing your reviews of tradespeople
+            you have used.
+        </p>
+        <p class="text-size">
+            <strong>We don’t accept anonymous reviews</strong>. We will never publish any of 
+            your personally identifiable details, but we do need your email address and contact 
+            phone number.
+        </p>
+      </div>
+
+      <div align="center" id="input-trader-box" *ngIf="!findTrader">
+        <h5 id="input-trader-title">
+          Which member do you want to review?
+        </h5>
+        <div id="input-trader">
+          <mat-form-field class="form-group input-trader-form">
+            <input type="text" 
+              placeholder="Select a trader" 
+              aria-label="Select a trader" 
+              matInput [formControl]="traderCtrl" 
+              [matAutocomplete]="auto" 
+              required>
+            <mat-error *ngIf="traderCtrl.invalid">
+              You must enter a trade.
+            </mat-error>
+            <mat-autocomplete #auto="matAutocomplete" md-menu-class="autocomplete">
+              <mat-option *ngFor="let option of filteredTraderOptions | async" 
+                [value]="option.name" 
+                (onSelectionChange)="onTraderSelected($event, option)">
+                  <span [innerHTML]="option.name | highlight: toHighlight"></span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+        <a [routerLink]="" (click)="findTrader=true" >
+          I can't find the tradesperson I want to review.
+        </a>
+
+        <div align="right" id="feedback-footer">
+          <button mat-flat-button 
+            (click)="searchTraderSubmit()" 
+            [disabled]="!next">
+            Next
+          </button>
+        </div>
+      </div>
+
+        <div id="input-trader-box" *ngIf="findTrader">
+            <div class="fluid" style="    padding: 25px 20px 20px 20px;">
+              <p class="text-size">
+                <strong>
+                  If the business isn't listed, they're not currently a member of Checkatrade.
+                </strong>
+              </p>
+              <p class="text-size">
+                We won't be able to publish reviews of non-members, but we can use any feedback we
+                have to build up a profile of a business if they join us in future.
+              </p>
+              <p class="text-size">
+                We're not able to take part in any compaint or dispute against a business who is
+                not a member of Checkatrade.
+              </p>
+              <a [routerLink]="" (click)="findTrader=false" >
+                <p class="text-size">
+                  Back and try again.
+                </p>
+              </a>
+            </div>
+            <div class="fluid"  style="padding-top: 20px; padding-left:10%;">
+
+              <!-- yes or no -->
+              <div class="fluid" style="margin-top: -20px;">
+                <mat-radio-group style="    margin-top: -20px">
+                  <mat-radio-button style="padding-right: 50px;" value="yes" #YES [checked]="true">
+                    <p class="text-size" style="margin-top: 18px;">
+                      Yes
+                    </p>
+                  </mat-radio-button>
+                  <mat-radio-button value="no" #NO>
+                    <p class="text-size" style="    margin-top: 18px;">
+                      No
+                    </p>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+
+              <!-- NO -->
+              <div class="responseNo" *ngIf="NO.checked" style="    margin-top: -15px;">
+                <p>
+                  Have you read our policy on <a href="#">resolving issues</a>?
+                </p>
+              </div>
+
+              <!-- YES -->
+              <div>
+                <mat-form-field  style="max-width: 90%">
+                  <mat-label>
+                    Company name:
+                  </mat-label>
+                  <input matInput >
+                </mat-form-field>
+                <mat-form-field style="max-width: 90%" >
+                  <mat-label>
+                    Name of contact:
+                  </mat-label>
+                  <input matInput  >
+                </mat-form-field>
+                <mat-form-field style="max-width: 90%" >
+                  <mat-label>
+                    Company email address:
+                  </mat-label>
+                  <input matInput  >
+                </mat-form-field>
+                <mat-form-field style="max-width: 90%" >
+                  <input type="text" 
+                    placeholder="Please Select --- " 
+                    aria-label="Type of work (select best match):" 
+                    matInput 
+                    [formControl]="tradeCtrl" 
+                    [matAutocomplete]="auto" 
+                    required>
+                  <mat-error *ngIf="tradeCtrl.invalid">You must enter a trade.</mat-error>
+                  <mat-autocomplete #auto="matAutocomplete" md-menu-class="autocomplete">
+                    <mat-option *ngFor="let option of filteredCategoryOptions | async" 
+                      [value]="option.translations[0].name" >
+                      <span [innerHTML]="option.translations[0].name | highlight: toHighlight">
+                      </span>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field style="max-width: 90%" >
+                  <mat-label>
+                    Company telephone:
+                  </mat-label>
+                  <input matInput  >
+                </mat-form-field>
+                <div style="padding-bottom:20px;">
+                  <p style="padding-top:10px;">
+                    Company contact details:
+                  </p>
+                  <mat-form-field  style="max-width: 90%">
+                    <input matInput placeholder="House name / building">
+                  </mat-form-field>
+                  <mat-form-field  style="max-width: 90%">
+                    <input matInput placeholder="Number and street ">
+                  </mat-form-field>
+                  <mat-form-field  style="max-width: 90%">
+                    <input matInput placeholder="Town">
+                  </mat-form-field>
+                  <mat-form-field  style="max-width: 90%">
+                    <input matInput placeholder="City">
+                  </mat-form-field>
+                  <mat-form-field  style="max-width: 90%">
+                    <input matInput placeholder="Country">
+                  </mat-form-field>
+                  <mat-form-field  style="max-width: 90%">
+                    <input matInput placeholder="Postcode">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div align="right" id="feedback-footer">
+              <button mat-flat-button (click)="searchTraderNOSubmit()" >Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- main wizard review-->
+    <div [hidden]="traderFeedback" class="container-fluid form-stepper">
+
+        <!--<form [formGroup]="reviewTradersDataForm">-->
+        <mat-horizontal-stepper linear #stepper>
+
+            <!-- step 1 -->
+            <mat-step [stepControl]="experienceStepDataForm">
+                <form [formGroup]="experienceStepDataForm">
+
+                    <ng-template matStepLabel>Your experience</ng-template>
+                    <div class="container-fluid ">
+                        <!-- header -->
+                        <div class="row" id="exp-header">
+                          <div class="col-5">
+                            <p class="text-size">
+                              <strong>Is this the business you're looking for?</strong> 
+                              Check their details to make sure.
+                            </p>
+                            <p class="text-size">
+                              We will review all comments and scores about our members before
+                              publishing them, to ensure honesty and fairness.
+                            </p>
+                          </div>
+                          <div class="col-7" id="selected-trader">
+                            <h4 style="padding-top: 15px;">
+                              {{ traderName }}
+                            </h4>
+                            <p class="text-size" style="margin-top: -5px;">
+                              member for over *** years
+                            </p>
+                            <p class="text-size">
+                              <strong>{{ traderAddress }}</strong>
+                            </p>
+                          </div>
+                        </div>
+
+                        <!-- content-->
+                        <div id="exp-forms">
+                          <div class="fluid" style="padding-top: 25px;">
+                            <h5>Your Experience</h5>
+                          </div>
+
+                            <!-- reccomend -->
+                            <div class="row form-group" style="padding-top: 20px;">
+                              <div class="col-6">
+                                <p class="text-size">
+                                  Would you recommend this trader?
+                                  <span class="required">*</span>
+                                </p>
+                              </div>
+                              <div class="col-6" style="margin-top: -20px;">
+                                <mat-radio-group formControlName="recommendTrader" 
+                                  (click)="recommendTraderCtrl()" 
+                                  required>
+                                  <mat-radio-button style="padding-right: 50px;" 
+                                    value="yes" 
+                                    #recommendTraderYes 
+                                    [checked]="true">
+                                    <p class="text-size" 
+                                      style="margin-top: 18px;">
+                                      Yes
+                                    </p>
+                                  </mat-radio-button>
+                                  <mat-radio-button value="no" 
+                                    #recommendTraderNo>
+                                    <p class="text-size" style="margin-top: 18px;">
+                                      No
+                                    </p>
+                                  </mat-radio-button>
+                                </mat-radio-group>
+                              </div>
+                            </div>
+                            <!-- Yes recommend -->
+                            <div *ngIf="recommendTraderYes.checked">
+
+                                <!--estimateAccuracyId -->
+                                <div class="row form-group">
+                                  <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                      Compared to the estimate/quotation were you charged:
+                                      <span class="required">*</span>
+                                    </p>
+                                  </div>
+                                  <div class="col-6" style="margin-top: -18px;">
+                                    <mat-select placeholder="-- Please Select --" 
+                                      class="input-feedback" 
+                                      formControlName="estimateAccuracyId"
+                                      id="estimateAccuracyIdID"
+                                      required="{{requiredEstimateAccuracyId}}">
+                                      <mat-option *ngFor="let accuracy of estimateAccuracies" 
+                                        value="{{ accuracy.name }},{{ accuracy.id }}">
+                                        {{ accuracy.name }}
+                                      </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="(experienceStepDataForm.controls['estimateAccuracyId'].touched && !experienceStepDataForm.value['estimateAccuracyId']) ||  !experienceStepDataForm.value['estimateAccuracyId'] && !checkEstimateAccuracyId">
+                                      This field is required.
+                                    </mat-error>
+                                  </div>
+                                </div>
+
+                                <!-- didCustomerKnowCouldLeaveFeedback-->
+                                <div class="row form-group" style="padding-bottom: 30px;">
+                                  <div class="col-6">
+                                    <p class="text-size">
+                                      Did you know before the work started that you would be 
+                                      able to give feedback when the work was finished?
+                                      <span class="required">*</span>
+                                    </p>
+                                  </div>
+                                  <div class="col-6" style="margin-top: -15px;">
+                                    <mat-radio-group formControlName="didCustomerKnowCouldLeaveFeedback"  required="{{requiredDidCustomerKnowCouldLeaveFeedback}}">
+                                      <mat-radio-button style="padding-right: 50px;" value="yes">
+                                        <p style="margin-top: 17px; " class="text-size">
+                                          Yes
+                                        </p>
+                                      </mat-radio-button>
+                                      <mat-radio-button value="no">
+                                        <p style="margin-top: 17px; " class="text-size">
+                                          No
+                                        </p>
+                                      </mat-radio-button>
+                                    </mat-radio-group>
+                                    <mat-error *ngIf="!experienceStepDataForm.value['didCustomerKnowCouldLeaveFeedback'] && !checkDidCustomerKnowCouldLeaveFeedback">
+                                      Pick Yes or No.
+                                    </mat-error>
+                                  </div>
+                                </div>
+
+                            </div>
+
+                            <!-- No recommend -->
+                            <div *ngIf="recommendTraderNo.checked">
+
+                                <!--moneyExchanged -->
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <p class="text-size">
+                                            Was work carried out and/or money exchanged hands?
+                                            <span class="required">*</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-6" style="margin-top: -15px;">
+                                        <mat-radio-group formControlName="moneyExchanged" 
+                                          (click)="moneyExchangedCtrl()">
+                                            <mat-radio-button style="    padding-right: 50px;" 
+                                              value="yes" 
+                                              #moneyExchangedYES 
+                                              [checked]="true">
+                                                <p style="    margin-top: 17px; " class="text-size">
+                                                  Yes
+                                                </p>
+                                            </mat-radio-button>
+                                            <mat-radio-button value="no" #moneyExchangedNO>
+                                                <p style="    margin-top: 17px; " class="text-size"> 
+                                                  No 
+                                                </p>
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+
+                                <!-- language -->
+                                <div class="row form-group">
+                                    <div class="col-6">
+                                        <p class="text-size">Language:</p>
+                                    </div>
+                                    <div class="col-6" style="    margin-top: -12px;">
+                                        <mat-select class="input-feedback" 
+                                          id="languageSelectID" 
+                                          (change)="onChange($event)" 
+                                          [(value)]="selectedLanguageDefault">
+                                            <mat-option *ngFor="let language of languages" 
+                                              value="{{ language.name }}"> 
+                                              {{ language.name }} 
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                                <!-- moneyExchangedYES -->
+                                <div *ngIf="moneyExchangedYES.checked">
+                                    <!-- customerIssueId -->
+                                    <div class="row form-group" style="padding-bottom: 30px;">
+                                        <div class="col-6">
+                                            <p class="text-size">
+                                                Nature of Issue:
+                                                <span class="required">*</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-6" style="margin-top: -12px;">
+                                            <mat-select placeholder="-- Please Select --" 
+                                              class="input-feedback" 
+                                              formControlName="customerIssueIdMoney" 
+                                              [(value)]="selectedIssueMoneyExchangedDefault" 
+                                              required="{{requiredMoneyExchangedYES}}"
+                                              >
+                                                <mat-option *ngFor="let issue of customerIssueMoneyExchangedSelectedLanguage" 
+                                                    value="{{ issue.name }},{{ issue.id }}">
+                                                    {{ issue.name }}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="experienceStepDataForm.controls['customerIssueIdMoney'].touched && !experienceStepDataForm.value['customerIssueIdMoney'] || !checkCustomerIssueIdMoney">
+                                              This field is required.
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- moneyExchangedNO -->
+                                <div *ngIf="moneyExchangedNO.checked">
+                                    <!-- customerIssueId -->
+                                    <div class="row form-group">
+                                        <div class="col-6">
+                                            <p>
+                                                Nature of Issue:
+                                                <span class="required">*</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <mat-select placeholder="-- Please Select --" 
+                                              class="input-feedback" 
+                                              formControlName="customerIssueIdNoMoney" 
+                                              [(value)]="selectedIssueNoMoneyExchangedDefault" 
+                                              required="{{requiredMoneyExchangedNO}}"
+                                              >
+                                                <mat-option *ngFor="let issue of customerIssueNoMoneyExchangedSelectedLanguage" 
+                                                  value="{{ issue.name }}, {{ issue.id }}">
+                                                    {{ issue.name }}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="experienceStepDataForm.controls['customerIssueIdNoMoney'].touched && !experienceStepDataForm.value['customerIssueIdNoMoney'] || !checkCustomerIssueIdNoMoney">
+                                              This field is required.
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+                                    <!--issueComments -->
+                                    <div class="row form-group" style="    padding-bottom: 30px;">
+                                        <div class="col-6">
+                                            <p class="text-size">Comments:</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <textarea class="input-feedback" formControlName="issueComments" matInput></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- footer-->
+                        <div class="row">
+                            <div align="left" class="col-3">
+                                <button mat-flat-button (click)="backSearchTraderFeedback()">Back</button>
+                            </div>
+                            <div class="col-6"></div>
+                            <div align="right" class="col-3">
+                                <button mat-flat-button matStepperNext type="button" (click)="proceedStep2()">Next</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </mat-step>
+
+            <!-- step 2 -->
+            <mat-step [stepControl]="scoresStepDataForm">
+                <form [formGroup]="scoresStepDataForm">
+                    <ng-template matStepLabel>Your scores</ng-template>
+
+                    <!-- yes recommend -->
+                    <div class="container-fluid" *ngIf="recommendTraderYes.checked">
+                        <div class="fluid" id="exp-forms">
+                            <div class="fluid" style="    padding-top: 25px;">
+                                <h5 style="padding-left: 16px; padding-bottom: 18px;">
+                                  Your Scores
+                                </h5>
+                            </div>
+                            <div class="input-group  form-group">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Tidiness: </strong>How much effort did they make to keep tidy?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <mat-select class="input-feedback" formControlName="tidiness" placeholder=" --- ">
+                                        <mat-option *ngFor="let number of scores" value="{{ number }}">
+                                            {{ number }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="!checkTidiness">This field is required.</mat-error>
+                                </div>
+
+                            </div>    
+                            <div class="input-group  form-group">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Reliability & timekeeping: </strong>How reliable and timely were they?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <mat-select class="input-feedback" formControlName="reliability" placeholder=" --- ">
+                                        <mat-option *ngFor="let number of scores" value="{{ number }}">
+                                            {{ number }}
+                                        </mat-option> 
+                                    </mat-select>
+                                    <mat-error *ngIf="!checkReliability">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="input-group  form-group">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Courtsey: </strong>How courteous and polite were they?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <mat-select class="input-feedback" formControlName="courtsey" placeholder=" --- ">
+                                        <mat-option *ngFor="let number of scores" value="{{ number }}">
+                                            {{ number }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="!checkCourtsey">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="input-group  form-group" style="padding-bottom: 20px;">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Workmanship: </strong>How was the standard of the finished work?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <mat-select class="input-feedback" formControlName="workmanship" placeholder=" --- ">
+                                        <mat-option *ngFor="let number of scores" value="{{ number }}">
+                                            {{ number }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="!checkWorkmanship">This field is required.</mat-error>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fluid" id="exp-forms" style="padding-left: 35px;">
+                            <div class="fluid" style="    padding-top: 25px;     padding-bottom: 12px;">
+                                <h5 style=" padding-bottom: 18px;">Details of work done</h5>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        Brief description of work done:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -18px;">
+                                    <input class="input-feedback" matInput formControlName="briefWorkDescription" placeholder="e.g. New kitchen fitted">
+                                    <mat-error *ngIf="!checkBriefWorkDescription">This field is required.</mat-error>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        Date work was done (approx):
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -18px;">
+                                    <input class="input-feedback"
+                                    matInput 
+                                    [matDatepickerFilter]="myFilter" 
+                                    [matDatepicker]="picker" 
+                                    formControlName="workCompletedDate" >
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+
+                                </div>
+                            </div>
+                            <div class="row form-group" style="    margin-top: 20px;">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        How many days did this job take? (Please enter a number between 0 and 180):
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -10px;">
+                                    <input type="number" matInput formControlName="daysToCompleteWork" class="input-feedback" min="0" max="180">
+                                    <mat-error *ngIf="!checkDaysToCompleteWork">This field is required.</mat-error>
+                                </div>
+                            </div>
+                            <div class="row form-group" style="padding-bottom: 20px;">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        Your comments about the work:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -18px;">
+                                    <textarea class="input-feedback" matInput formControlName="workComments"></textarea>
+                                    <mat-error *ngIf="!checkWorkComments">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <p style="font-size: 11px;">
+                                    By providing these comments, you give permission for Checkatrade to review and publish this information. You should make sure all information is accurate to the best of your knowledge. We reserve the right to edit comments for length, spelling or clarity
+                                    where appropriate.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- footer-->
+                        <div class="row" style="margin-top: 10px;">
+                            <div align="left" class="col-3">
+                                <button mat-flat-button matStepperPrevious type="button">Back</button>
+                            </div>
+                            <div class="col-6"></div>
+                            <div align="right" class="col-3">
+                                <button mat-flat-button matStepperNext type="button" (click)="proceedStep3YES()">Next</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- no recommend -->
+                    <div class="container-fluid " *ngIf="recommendTraderNo.checked">
+                        <div class="fluid" id="exp-forms">
+                            <div class="fluid" style="    padding-top: 25px;">
+                                <h5 style="padding-left: 16px; padding-bottom: 18px;">Your Scores</h5>
+                            </div>
+                            <div class="input-group  form-group">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Tidiness: </strong>How much effort did they make to keep tidy?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <mat-select class="input-feedback" formControlName="tidiness" placeholder="-- Please Select ---">
+                                        <mat-option *ngFor="let number of tidinessOptions" value="{{ number }}">
+                                            {{ number }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="!checkTidiness">This field is required.</mat-error>
+                                </div>
+
+                            </div>
+
+                            <div class="input-group  form-group">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Reliability & timekeeping: </strong>How reliable and timely were they?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <mat-select class="input-feedback" formControlName="reliability" placeholder="-- Please Select ---">
+                                        <mat-option *ngFor="let number of reliabilityOptions" value="{{ number }}">
+                                            {{ number }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="!checkReliability">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="input-group  form-group">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Courtsey: </strong>How courteous and polite were they?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <mat-select class="input-feedback" formControlName="courtsey" placeholder="-- Please Select ---">
+                                        <mat-option *ngFor="let number of courtesyOptions" value="{{ number }}">
+                                            {{ number }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="!checkCourtsey">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="input-group  form-group" style="padding-bottom: 20px;">
+                                <div class="col-6">
+                                    <p>
+                                        <strong>Workmanship: </strong>How was the standard of the finished work?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <mat-select class="input-feedback" formControlName="workmanship" placeholder="-- Please Select ---">
+                                        <mat-option *ngFor="let number of workmanshipOptions" value="{{ number }}">
+                                            {{ number }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="!checkWorkmanship">This field is required.</mat-error>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fluid" id="exp-forms" style="padding-left: 35px;">
+                            <div class="fluid" style="    padding-top: 25px;     padding-bottom: 12px;">
+                                <h5 style=" padding-bottom: 18px;">Details of work done</h5>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        Brief description of work done:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -18px;">
+                                    <input class="input-feedback" matInput formControlName="briefWorkDescription">
+                                    <mat-error *ngIf="!checkBriefWorkDescription">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        Date work was done (approx):
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -18px;">
+                                    <input class="input-feedback" [formControl]="currentDate" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="workCompletedDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+
+                                </div>
+                            </div>
+                            <div class="row form-group" style="    margin-top: 20px;">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        How many days did this job take? (Please enter a number between 0 and 180):
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -10px;">
+                                    <input type="number" matInput formControlName="daysToCompleteWork" class="input-feedback" min="0" max="180">
+                                    <mat-error *ngIf="!checkDaysToCompleteWork">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="padding-bottom: 20px;">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        Your comments about the work:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -18px;">
+                                    <textarea class="input-feedback" matInput formControlName="workComments"></textarea>
+                                    <mat-error *ngIf="!checkWorkComments">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-6">
+                                    <p class="text-size">
+                                        Is the work covered under a warranty or guarantee?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="margin-top: -10px;">
+                                    <mat-radio-group formControlName="workUnderWarranty" required>
+                                        <mat-radio-button style="padding-right: 50px;" value="yes">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                Yes
+                                            </p>
+                                        </mat-radio-button>
+                                        <mat-radio-button value="no">
+                                            <p class="text-size" style="    margin-top: 18px;">
+                                                No
+                                            </p>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                    <mat-error *ngIf="!checkWorkUnderWarranty">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 10px;">
+                                <div class="col-6">
+                                    <p class="text-size">
+                                        Have you talked to the Tradesperson about your complaint?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="margin-top: -20px;">
+                                    <mat-radio-group formControlName="contactedTradeAboutComplaint" required>
+                                        <mat-radio-button style="padding-right: 50px;" value="yes" #contactedTradeAboutComplaintYES>
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                Yes
+                                            </p>
+                                        </mat-radio-button>
+                                        <mat-radio-button value="no" #contactedTradeAboutComplaintNO>
+                                            <p class="text-size" style="    margin-top: 18px;">
+                                                No
+                                            </p>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                    <mat-error *ngIf="!checkContactedTradeAboutComplaint">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div *ngIf="contactedTradeAboutComplaintYES.checked" class="row form-group" style="padding-bottom: 20px;">
+                                <div class="col-6" style="    margin-top: -12px;">
+                                    <p class="text-size">
+                                        What was their response?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="    margin-top: -18px;">
+                                    <textarea class="input-feedback" matInput formControlName="tradeCompaintResponse"></textarea>
+                                </div>
+                            </div>
+
+                            <div *ngIf="contactedTradeAboutComplaintNO.checked" class="row" class="responseNo">
+                                <p>
+                                    Please note, before making a complaint we encourage and recommend that you make all reasonable efforts to discuss your concerns directly with the business.
+                                </p>
+                            </div>
+
+
+
+                            <div class="row">
+                                <p style="font-size: 11px;">
+                                    By providing these comments, you give permission for Checkatrade to review and publish this information. You should make sure all information is accurate to the best of your knowledge. We reserve the right to edit comments for length, spelling or clarity
+                                    where appropriate.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- footer-->
+                        <div class="row" style="margin-top: 10px;">
+                            <div align="left" class="col-3">
+                                <button mat-flat-button matStepperPrevious type="button">Back</button>
+                            </div>
+                            <div class="col-6"></div>
+                            <div align="right" class="col-3">
+                                <button mat-flat-button matStepperNext type="button" (click)="proceedStep3NO()">Next</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </mat-step>
+
+            <!-- step 3 -->
+            <mat-step [stepControl]="detailsStepDataForm">
+                <form [formGroup]="detailsStepDataForm">
+                    <ng-template matStepLabel>Your details</ng-template>
+                    <div class="container-fluid ">
+                        <!-- header-->
+                        <div class="row" id="exp-header">
+                            <p>
+                                To make sure we publish reliable feedback, we may contact you to verify the information you provide in your review.
+                            </p>
+                        </div>
+
+                        <!-- content -->
+                        <div id="exp-forms">
+                            <div class="fluid" style="    padding-top: 25px;">
+                                <h5>Your details</h5>
+                            </div>
+
+                            <!-- I AM -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        I am:
+                                    </p>
+                                </div>
+                                <div class="col-8" style="margin-top: -20px;">
+                                    <mat-radio-group formControlName="title">
+                                        <mat-radio-button style="padding-right: 50px;" #individualConsumer value="individual" [checked]="true">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                an individual consumer
+                                            </p>
+                                        </mat-radio-button>
+                                        <mat-radio-button #tradeCustomer value="trade">
+                                            <p class="text-size" style="    margin-top: 18px;">
+                                                a trade customer
+                                            </p>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+
+                            <!-- name -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Name:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-8"  style="padding-left: 30px;">
+                                    <div class="row">
+                                        <mat-select class="input-feedback" 
+                                        formControlName="titleName" 
+                                        style="max-width: 16%;">
+                                            <mat-option *ngFor="let title of titleNames" value="{{ title }}">
+                                                {{ title }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <input class="input-feedback" 
+                                            matInput 
+                                            formControlName="customerName"
+                                            style="max-width: 51%; margin-left: 10px;">
+                                        <mat-error *ngIf="!checkCustomerName">This field is required.</mat-error>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- addresses -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Address:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+
+                                <div class="col-8">
+
+                                    <!-- main address-->
+                                    <div class="fluid" style="padding-bottom: 20px;">
+                                        <input matInput 
+                                            autocorrect="off" 
+                                            autocapitalize="off" 
+                                            spellcheck="off" 
+                                            type="text"
+                                            #address1 
+                                            [formControl]="locationCtrl" 
+                                            (focusout)="onLocationFocusOut('address1')" 
+                                            required
+                                            class="input-feedback"
+                                            placeholder="address 1 (main address)">
+                                        <mat-error *ngIf="locationCtrl.invalid">
+                                            You must enter a valid location.
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- address 2 -->
+                                    <div class="fluid" style="padding-bottom: 20px;">
+                                        <input matInput 
+                                            autocorrect="off" 
+                                            autocapitalize="off" 
+                                            spellcheck="off" 
+                                            type="text" 
+                                            #address2 
+                                            [formControl]="locationCtrl2" 
+                                            (focusout)="onLocationFocusOut('address2')"
+                                            class="input-feedback"
+                                            placeholder="address 2">
+                                        <mat-error *ngIf="locationCtrl2.invalid">
+                                            You must enter a valid location.
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- address 3  -->
+                                    <div class="fluid" style="padding-bottom: 20px;">
+                                        <input matInput 
+                                            autocorrect="off" 
+                                            autocapitalize="off" 
+                                            spellcheck="off" 
+                                            type="text" 
+                                            #address3 
+                                            [formControl]="locationCtrl3" 
+                                            (focusout)="onLocationFocusOut('address3')"
+                                            class="input-feedback"
+                                            placeholder="address 3">
+                                        <mat-error *ngIf="locationCtrl3.invalid">
+                                            You must enter a valid location.
+                                        </mat-error>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- htelephone -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Home telephone:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="customerTelephone">
+                                    <mat-error *ngIf="!checkCustomerTelephone">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <!-- contact time-->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Best time to contact you:
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="bestContactTime">
+                                    <mat-error *ngIf="!checkBestContactTime">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Email:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="customerEmail">
+                                    <mat-error *ngIf="!checkCustomerEmail">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <!-- mobile -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">Mobile:</p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="customerMobile">
+                                    <mat-error *ngIf="!checkCustomerMobile">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        We will need to verify your feedback before publishing. This can be done by email or SMS message. Please specify which you would prefer.
+                                    </p>
+                                </div>
+                                <div class="col-8" style="margin-top: -20px;">
+                                    <mat-radio-group formControlName="verificationPreference"  required>
+                                        <mat-radio-button style="padding-right: 50px;" #individualConsumer value="0">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                Verify by email
+                                            </p>
+                                        </mat-radio-button>
+                                        <mat-radio-button #tradeCustomer value="1">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                Verify by SMS (Please provide a mobile number)
+                                            </p>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        How did you hear about Bemfeito:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="col-10">
+                                        <mat-select class="input-feedback" 
+                                            formControlName="howDidHearAboutReviewService"
+                                            style="max-width: 88%; margin-left: -15px;"
+                                            placeholder="--- Please Select ---">
+                                            <mat-option *ngFor="let hear of hearAboutBemfeito" value="{{ hear }}">
+                                                {{ hear }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="!checkHowDidHearAboutReviewService">This field is required.</mat-error>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">What brought you to use the tradesperson you are leaving this feedback for?</p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="col-10">
+                                        <mat-select class="input-feedback" 
+                                            formControlName="howDidyouFindTraderReviewService"
+                                            style="max-width: 88%; margin-left: -15px;"
+                                            placeholder="Prefer not to say">
+                                            <mat-option *ngFor="let reason of tradespersonLeavingFeedback" value="{{ reason }}">
+                                                {{ reason }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4"> </div>
+                                <div class="col-8">
+                                    <section>
+                                        <mat-checkbox formControlName="receiveUpdates">
+                                            I am happy to receive updates from Bemfeito
+                                        </mat-checkbox>
+                                        <mat-checkbox formControlName="receiveThirdPartyUpdates">
+                                            I am happy to receive updates from selected third parties
+                                        </mat-checkbox>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- footer-->
+                    <div class="row" style="margin-top: 10px;">
+                        <div align="left" class="col-3">
+                            <button mat-flat-button matStepperPrevious type="button">Back</button>
+                        </div>
+                        <div class="col-6"></div>
+                        <div align="right" class="col-3">
+                            <button mat-flat-button matStepperNext type="button" (click)="proceedStep4()">Next</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </mat-step>
+
+            <!-- step 4 -->
+            <mat-step [stepControl]="futherStepDataForm">
+                <form [formGroup]="futherStepDataForm">
+                    <ng-template matStepLabel>Further information</ng-template>
+
+                    <div class="container-fluid ">
+                        <div id="exp-forms">
+                            <div class="fluid" style="    padding-top: 25px;">
+                                <h5>Value Of Work</h5>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        For our own information would you be happy to tell us the approximate value of the work carried out?
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="valueOfWork" placeholder="0" value="0">
+                                </div>
+                            </div>
+
+                             <div class="row form-group" style="    padding-top: 10px;">
+                                <div class="col-6">
+                                    <p class="text-size">
+                                        Would you like your feedback published?
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="margin-top: -20px;">
+                                    <mat-radio-group formControlName="publishFeedback" required>
+                                        <mat-radio-button style="padding-right: 50px;" value="yes" #publishFeedbackYES [checked]="true">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                Yes
+                                            </p>
+                                        </mat-radio-button>
+                                        <mat-radio-button value="no" #publishFeedbackNO>
+                                            <p class="text-size" style="    margin-top: 18px;">
+                                                No
+                                            </p>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf="publishFeedbackNO.checked">
+                                <div  class="responseNo">
+                                    <p>
+                                       By ticking ‘No’ we will not contact the trader but we may contact you.
+                                    </p>
+                                </div>
+                                <div class="col-6" style="margin-top: -20px;">
+                                    <mat-radio-group formControlName="canTraderContactForResolution" required>
+                                        <mat-radio-button style="padding-right: 50px;" value="yes" [checked]="true">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                Yes
+                                            </p>
+                                        </mat-radio-button>
+                                        <mat-radio-button value="no" >
+                                            <p class="text-size" style="    margin-top: 18px;">
+                                                No
+                                            </p>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                    <!-- <mat-error *ngIf="!checkHowDidHearAboutReviewService">This field is required.</mat-error> -->
+                                </div>
+                            </div>
+
+                            <div *ngIf="publishFeedbackYES.checked" class="row">
+                                <div class="responseNo">
+                                    <p>
+                                        By ticking ‘Yes’ you are giving us permission to contact the trade to discuss the issue. The trade will have the opportunity to a ‘right of reply’
+                                    </p>
+                                </div>
+                                <div class="row form-group" style="    padding-top: 20px;">
+                                    <div class="col-4">
+                                        <p class="text-size">
+                                            Home telephone:
+                                            <span class="required">*</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="input-feedback" matInput formControlName="reasonForNotPublishing">
+                                        <!-- <mat-error *ngIf="!checkCustomerTelephone">This field is required.</mat-error> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   
+                     <!-- footer-->
+                    <div class="row" style="margin-top: 10px;">
+                        <div align="left" class="col-3">
+                            <button mat-flat-button matStepperPrevious type="button">Back</button>
+                        </div>
+                        <div class="col-6"></div>
+                        <div align="right" class="col-3">
+                            <button mat-flat-button matStepperNext type="button" (click)="submitReview()">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </mat-step>
+
+        </mat-horizontal-stepper>
+        <!-- </form> -->
+    </div>
+
+    <!-- no trader wizard review-->
+    <div [hidden]="traderFeedbackNO" class="container-fluid form-stepper">
+        <!--<form [formGroup]="reviewTradersDataForm">-->
+        <mat-horizontal-stepper linear #stepperR>
+            <!-- step 1 -->
+            <mat-step [stepControl]="scoresStepDataForm">
+                <form [formGroup]="scoresStepDataForm">
+                    <ng-template matStepLabel>Your experience</ng-template>
+                    <div class="fluid" id="exp-forms">
+                        <div class="fluid" style="    padding-top: 25px;     padding-bottom: 12px;">
+                            <h5 style=" padding-bottom: 18px;">
+                                Details of work done
+                            </h5>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-6" style="    margin-top: -12px;">
+                                <p class="text-size">
+                                    Brief description of work done:
+                                    <span class="required">*</span>
+                                </p>
+                            </div>
+                            <div class="col-6" style="    margin-top: -18px;">
+                                <input class="input-feedback" matInput formControlName="briefWorkDescription" placeholder="e.g. New kitchen fitted">
+                                <mat-error *ngIf="!checkBriefWorkDescription">This field is required.</mat-error>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-6" style="    margin-top: -12px;">
+                                <p class="text-size">
+                                    Date work was done (approx):
+                                    <span class="required">*</span>
+                                </p>
+                            </div>
+                            <div class="col-6" style="    margin-top: -18px;">
+                                <input class="input-feedback" [formControl]="currentDate" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="workCompletedDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+
+                            </div>
+                        </div>
+                        <div class="row form-group" style="    margin-top: 20px;">
+                            <div class="col-6" style="    margin-top: -12px;">
+                                <p class="text-size">
+                                    How many days did this job take? (Please enter a number between 0 and 180):
+                                    <span class="required">*</span>
+                                </p>
+                            </div>
+                            <div class="col-6" style="    margin-top: -10px;">
+                                <input type="number" matInput formControlName="daysToCompleteWork" class="input-feedback" min="0" max="180">
+                                <mat-error *ngIf="!checkDaysToCompleteWork">This field is required.</mat-error>
+                            </div>
+                        </div>
+                        <div class="row form-group" style="padding-bottom: 20px;">
+                            <div class="col-6" style="    margin-top: -12px;">
+                                <p class="text-size">
+                                    Your comments about the work:
+                                    <span class="required">*</span>
+                                </p>
+                            </div>
+                            <div class="col-6" style="    margin-top: -18px;">
+                                <textarea class="input-feedback" matInput formControlName="workComments"></textarea>
+                                <mat-error *ngIf="!checkWorkComments">This field is required.</mat-error>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p style="font-size: 11px;">
+                                By providing these comments, you give permission for Checkatrade to review and publish this information. You should make sure all information is accurate to the best of your knowledge. We reserve the right to edit comments for length, spelling or clarity
+                                where appropriate.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- footer-->
+                    <div class="row">
+                        <div align="left" class="col-3">
+                            <button mat-flat-button (click)="backSearchTraderFeedback()">Back</button>
+                        </div>
+                        <div class="col-6"></div>
+                        <div align="right" class="col-3">
+                            <button mat-flat-button matStepperNext type="button" (click)="proceedStep2NO()">Next</button>
+                        </div>
+                    </div>
+
+                </form>
+            </mat-step>
+
+            <!-- step 2 -->
+            <mat-step [stepControl]="detailsStepDataForm">
+                <form [formGroup]="detailsStepDataForm">
+                    <ng-template matStepLabel>Your details</ng-template>
+                    <div class="container-fluid ">
+                        <!-- header-->
+                        <div class="row" id="exp-header">
+                            <p>
+                                To make sure we publish reliable feedback, we may contact you to verify the information you provide in your review.
+                            </p>
+                        </div>
+
+                        <!-- content -->
+                        <div id="exp-forms">
+                            <div class="fluid" style="    padding-top: 25px;">
+                                <h5>Your details</h5>
+                            </div>
+
+                            <!-- I AM -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        I am:
+                                    </p>
+                                </div>
+                                <div class="col-8" style="margin-top: -20px;">
+                                    <mat-radio-group formControlName="title">
+                                        <mat-radio-button style="padding-right: 50px;" #individualConsumer value="individual consumer" [checked]="true">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                an individual consumer
+                                            </p>
+                                        </mat-radio-button>
+                                        <mat-radio-button #tradeCustomer value="trade customer">
+                                            <p class="text-size" style="    margin-top: 18px;">
+                                                a trade customer
+                                            </p>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+
+                            <!-- name -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Name:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-8"  style="padding-left: 30px;">
+                                    <div class="row">
+                                        <mat-select class="input-feedback" 
+                                        formControlName="titleName" 
+                                        style="max-width: 16%;">
+                                            <mat-option *ngFor="let title of titleNames" value="{{ title }}">
+                                                {{ title }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <input class="input-feedback" 
+                                            matInput 
+                                            formControlName="customerName"
+                                            style="max-width: 51%; margin-left: 10px;">
+                                        <mat-error *ngIf="!checkCustomerName">This field is required.</mat-error>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- addresses -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Address:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+
+                                <div class="col-8">
+
+                                    <!-- main address-->
+                                    <div class="fluid" style="padding-bottom: 20px;">
+                                        <input matInput 
+                                            autocorrect="off" 
+                                            autocapitalize="off" 
+                                            spellcheck="off" 
+                                            type="text"
+                                            #address1 
+                                            [formControl]="locationCtrl" 
+                                            (focusout)="onLocationFocusOut('address1')" 
+                                            required
+                                            class="input-feedback"
+                                            placeholder="address 1 (main address)">
+                                        <mat-error *ngIf="locationCtrl.invalid">
+                                            You must enter a valid location.
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- address 2 -->
+                                    <div class="fluid" style="padding-bottom: 20px;">
+                                        <input matInput 
+                                            autocorrect="off" 
+                                            autocapitalize="off" 
+                                            spellcheck="off" 
+                                            type="text" 
+                                            #address2 
+                                            [formControl]="locationCtrl2" 
+                                            (focusout)="onLocationFocusOut('address2')"
+                                            class="input-feedback"
+                                            placeholder="address 2">
+                                        <mat-error *ngIf="locationCtrl2.invalid">
+                                            You must enter a valid location.
+                                        </mat-error>
+                                    </div>
+
+                                    <!-- address 3  -->
+                                    <div class="fluid" style="padding-bottom: 20px;">
+                                        <input matInput 
+                                            autocorrect="off" 
+                                            autocapitalize="off" 
+                                            spellcheck="off" 
+                                            type="text" 
+                                            #address3 
+                                            [formControl]="locationCtrl3" 
+                                            (focusout)="onLocationFocusOut('address3')"
+                                            class="input-feedback"
+                                            placeholder="address 3">
+                                        <mat-error *ngIf="locationCtrl3.invalid">
+                                            You must enter a valid location.
+                                        </mat-error>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- htelephone -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Home telephone:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="customerTelephone">
+                                    <mat-error *ngIf="!checkCustomerTelephone">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <!-- contact time-->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Best time to contact you:
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="bestContactTime">
+                                    <mat-error *ngIf="!checkBestContactTime">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        Email:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="customerEmail">
+                                    <mat-error *ngIf="!checkCustomerEmail">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <!-- mobile -->
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">Mobile:</p>
+                                </div>
+                                <div class="col-8">
+                                    <input class="input-feedback" matInput formControlName="customerMobile">
+                                    <mat-error *ngIf="!checkCustomerMobile">This field is required.</mat-error>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        We will need to verify your feedback before publishing. This can be done by email or SMS message. Please specify which you would prefer.
+                                    </p>
+                                </div>
+                                <div class="col-8" style="margin-top: -20px;">
+                                    <mat-radio-group formControlName="verificationPreference"  required>
+                                        <mat-radio-button style="padding-right: 50px;" #individualConsumer value="email">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                Verify by email
+                                            </p>
+                                        </mat-radio-button>
+                                        <mat-radio-button #tradeCustomer value="SMS">
+                                            <p class="text-size" style="margin-top: 18px;">
+                                                Verify by SMS (Please provide a mobile number)
+                                            </p>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">
+                                        How did you hear about Bemfeito:
+                                        <span class="required">*</span>
+                                    </p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="col-10">
+                                        <mat-select class="input-feedback" 
+                                            formControlName="howDidHearAboutReviewService"
+                                            style="max-width: 88%; margin-left: -15px;"
+                                            placeholder="--- Please Select ---">
+                                            <mat-option *ngFor="let hear of hearAboutBemfeito" value="{{ hear }}">
+                                                {{ hear }}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="!checkHowDidHearAboutReviewService">This field is required.</mat-error>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4">
+                                    <p class="text-size">What brought you to use the tradesperson you are leaving this feedback for?</p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="col-10">
+                                        <mat-select class="input-feedback" 
+                                            formControlName="howDidyouFindTraderReviewService"
+                                            style="max-width: 88%; margin-left: -15px;"
+                                            placeholder="Prefer not to say">
+                                            <mat-option *ngFor="let reason of tradespersonLeavingFeedback" value="{{ reason }}">
+                                                {{ reason }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group" style="    padding-top: 20px;">
+                                <div class="col-4"> </div>
+                                <div class="col-8">
+                                    <section>
+                                        <mat-checkbox formControlName="receiveUpdates">
+                                            I am happy to receive updates from Bemfeito
+                                        </mat-checkbox>
+                                        <mat-checkbox formControlName="receiveThirdPartyUpdates">
+                                            I am happy to receive updates from selected third parties
+                                        </mat-checkbox>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- footer-->
+                    <div class="row" style="margin-top: 10px;">
+                        <div align="left" class="col-3">
+                            <button mat-flat-button matStepperPrevious type="button">Back</button>
+                        </div>
+                        <div class="col-6"></div>
+                        <div align="right" class="col-3">
+                            <button mat-flat-button matStepperNext type="button" (click)="submitReviewNoCompany()">Submit</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </mat-step>
+
+        </mat-horizontal-stepper>
+        <!-- </form> -->
+    </div>
+
+</div>
+
+<footer></footer>

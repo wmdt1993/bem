@@ -1,0 +1,179 @@
+<!-- 
+<div class="row">
+    <div class="col-4">
+
+    </div>
+    <div class="col-8">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="18">
+            <agm-marker [latitude]="lat" [longitude]="lng" ></agm-marker>
+        </agm-map>
+    
+    </div>
+</div> -->
+<nav-menu>
+</nav-menu>
+<div class="profile-top"></div>
+
+<agm-map [latitude]="lat" [longitude]="lng" [styles]="stylesmap" [zoom]="18">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+
+<div class="row profile-card position-sticky">
+    <div class="col-8 profile-card-content-left ">
+        <div>
+            <h5>{{traderProfile['name']}}</h5>
+        </div>
+        <div style="padding-top: 16px;">
+            <p class="profile-card-text">{{traderProfile['telephone']}}</p>
+        </div>
+        <div style="margin-top: -10px;">
+            <p class="profile-card-text">{{traderProfile['email']}}</p>
+        </div>
+    </div>
+    <div class="col-4">
+        <div>
+            <p>Review</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- <ng-container *ngIf="(asyncTabs | async) === null">
+    Loading tabs...
+</ng-container> *ngIf="(asyncTabs | async) !== null -->
+
+
+<mat-tab-group id="tab-profile">
+    <mat-tab class="aa">
+        <div class="tab-title">
+            <ng-template mat-tab-label>Profile</ng-template>
+        </div>
+        <div class=" row tab-profile-row">
+            <div class="col-7">
+                <div class="row" id="check-box">
+                    <div class="col-6">
+                        <div>
+                            <i class="material-icons icon-color">
+                                check_circle_outline
+                            </i>
+                            <span class="check-list">Interviewed by Bemfeito</span>
+                        </div>
+                        <div>
+                            <i class="material-icons icon-color">
+                                    check_circle_outline
+                                </i>
+                            <span class="check-list">Insurance checked</span>
+                        </div>
+                        <div>
+                            <i class="material-icons icon-color">
+                                        check_circle_outline
+                                    </i>
+                            <span class="check-list">ID checked</span>
+                        </div>
+                        <div>
+                            <i class="material-icons icon-color">
+                                            check_circle_outline
+                                        </i>
+                            <span class="check-list">References checked</span>
+                        </div>
+
+                        <div>
+                            <i class="material-icons icon-color">
+                                                check_circle_outline
+                                            </i>
+                            <span class="check-list">Bemfeito standard signed</span>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="col-6">
+
+                        <div>
+                            <i class="material-icons icon-color">
+                                            check_circle_outline
+                                        </i>
+                            <span class="check-list">8 accreditations checked</span>
+                        </div>
+                        <div>
+                            <i class="material-icons icon-color">
+                                                check_circle_outline
+                                            </i>
+                            <span class="check-list">Limited company checked</span>
+                        </div>
+                        <div>
+                            <i class="material-icons icon-color">
+                                                    check_circle_outline
+                                                </i>
+                            <span class="check-list">Address checked</span>
+                        </div>
+                        <div>
+                            <i class="material-icons icon-color">
+                                                        check_circle_outline
+                                                    </i>
+                            <span class="check-list">VAT registered</span>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="tab-profile-row">
+
+
+                    <div>
+                        <p class="text-size">{{traderProfile['notes']}}</p>
+                    </div>
+                    <div style="padding-top: 15px;">
+                        <h5 style="color:#4fa6de;">Based in</h5>
+                        <p class="text-size">{{ mainAddress }}</p>
+                    </div>
+                    <div style="padding-top: 15px;">
+                        <h5 style="color:#4fa6de;">Works in</h5>
+                        <p class="text-size">radius</p>
+                    </div>
+                    <div style="padding-top: 20px;padding-bottom: 100px;">
+                        <div>Give feedback on this member</div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-5">
+                <div>asdasdas</div>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>Review</ng-template>
+        <h1>reviewss</h1>
+    </mat-tab>
+</mat-tab-group>
+
+
+
+<!-- 
+
+<div class="col-md-12" style="padding-left:  10em;"><h1>Profile</h1></div> -->
+<div class="col-md-12" style="padding-left:  10em;">
+    <div class="listing__left-column" data-company-id="377470">
+        <h2 class="results__title">
+            <!-- <a >  {{name.name}} </a> -->
+        </h2>
+        <!-- <p class="results__description"> {{name.notes}} </p> -->
+        <!--             
+                <p>
+                   
+                    Based in {{locality}}
+                </p> -->
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<footer></footer>

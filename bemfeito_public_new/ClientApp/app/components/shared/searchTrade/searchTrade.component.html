@@ -1,0 +1,78 @@
+﻿<form>
+    <div *ngIf="!searchTrade">
+        <div class="form-row form-row-search">
+            <div class="col-4">
+                <mat-form-field class="form-group special-input">
+                    <input type="text" 
+                        placeholder="Select a trade" 
+                        aria-label="Select a trade" 
+                        matInput 
+                        [formControl]="tradeCtrl" 
+                        [matAutocomplete]="auto" required>
+                    <mat-error *ngIf="tradeCtrl.invalid">You must enter a trade.</mat-error>
+                    <mat-autocomplete #auto="matAutocomplete" 
+                        md-menu-class="autocomplete">
+                        <mat-option *ngFor="let option of filteredCategoryOptions | async" 
+                            [value]="option.translations[0].name" 
+                            (onSelectionChange)="onTradeSelected($event, option)">
+                            <span [innerHTML]="option.translations[0].name | highlight: toHighlight"></span>
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div class="col-5">
+                <mat-form-field class="form-group special-input">
+                    <input matInput autocorrect="off" 
+                        autocapitalize="off" 
+                        spellcheck="off" 
+                        type="text" 
+                        placeholder="Search for a location" 
+                        #search 
+                        [formControl]="locationCtrl" 
+                        (focusout)="onLocationFocusOut()" 
+                        required>
+                    <mat-error *ngIf="locationCtrl.invalid">You must enter a valid location.</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <button type="submit" 
+                    class="btn btn-primary btn-block" 
+                    (click)="searchTradeSubmit()">
+                        Search <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="search-switch" [routerLink]="" (click)="searchTrade=true">
+                    <i class="fa fa-search "></i> Alternatively lookup by member name.</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="searchTrade">
+        <div class="form-row">
+            <div class="col-8">
+                <mat-form-field class="form-group special-input">
+                    <input type="text" placeholder="Find a member" aria-label="Find a member" matInput [formControl]="memberCtrl" [matAutocomplete]="auto" required>
+                    <mat-error *ngIf="memberCtrl.invalid">
+                        You must enter the name of the trader you would like to search for.
+                    </mat-error>
+                    <mat-autocomplete #auto="matAutocomplete" md-menu-class="autocomplete">
+                        <mat-option *ngFor="let option of filteredMemberOptions | async" [value]="option.name" (onSelectionChange)="onTradeSelected($event, option)">
+                            <span [innerHTML]="option.name | highlight: toHighlight"></span>
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary btn-block" (click)="searchMemberSubmit()"> Search <i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="search-switch" [routerLink]="" (click)="searchTrade=false">
+                    <i class="fa fa-search "></i> Alternatively search by trade and your location.</a>
+            </div>
+        </div>
+    </div>
+</form>

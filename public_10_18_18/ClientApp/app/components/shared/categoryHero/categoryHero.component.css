@@ -1,0 +1,65 @@
+﻿.category {
+    background-image: url('/Public/808906682.jpg');
+    background-size: cover;
+    position: relative;
+    padding: 6%;
+    color: rgba(255, 255, 255, 1);
+}
+
+.colour-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #343a4087
+    /*z-index: 99;*/
+}
+
+.btn-white {
+    background-color: rgba( 255, 255, 255, 1);
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 34px;
+    color: rgba(0, 0, 0, 1);
+}
+#category-trade-list > div {
+    display: inline;
+}
+
+@media screen and (max-width: 901px) {
+    .btn-white {
+        font-size: 15px;
+        line-height: 22px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    p,
+    .btn {
+        font-size: 0.8rem;
+    }
+    h2, .h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 615px) {
+    #category-trade-list > div {
+        display: block;
+        margin: 5px auto;
+    }
+}
+@media screen and (max-width: 425px) {
+    p,
+    .btn {
+        font-size: 0.6rem;
+    }
+    h2, .h2 {
+        font-size: 1.2rem;
+    }
+    .btn-white {
+        line-height: 15px;
+    }
+}
+

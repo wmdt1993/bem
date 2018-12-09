@@ -1,0 +1,107 @@
+.search {
+    background: rgba(0, 0, 0, 0);
+    padding: 0 20% 1% 20%;
+    /* max-width: 85%; */
+    /* padding-top: 33px; */
+    /* margin-left: 8%; */
+    margin-top: -63px;
+    /* border-radius: 5px; */
+    border-bottom-style: inset;
+}
+
+.results {
+    margin-top: 20px;
+    margin-left: 7%;
+}
+
+#map-search {
+    margin-top: 60px;
+}
+
+agm-map {
+    height: 40%;
+}
+
+.app-loading-home {
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.app-loading-home .spinner-home {
+    height: 200px;
+    width: 200px;
+    /* animation: rotate 2s linear infinite; */
+    transform-origin: center center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.app-loading-home .spinner-home .path-home {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite;
+    stroke-linecap: round;
+    stroke: #33a5de;
+}
+
+.img-loading-home {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}
+
+.box-right {
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color: #eeeeef;
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color: #eeeeef;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #eeeeef;
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: #eeeeef;
+    height: 200px;
+    margin-right: 25%;
+    margin-top: 7%;
+}
+
+.box-right-title {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #eeeeef;
+}

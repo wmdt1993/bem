@@ -1,0 +1,63 @@
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQm4LvZOM4NvMzeoqVmGfyqJO4Y1tXQ5A&libraries=places&sensor=false&language=en&region=pt"></script>
+
+<div class="custom-content container">
+    <mat-progress-bar mode="indeterminate" class="mat-loading-position" [hidden]="hideProgressBar"></mat-progress-bar>
+    <form class="custom-mat-form" [formGroup]="traderForm" (ngSubmit)="actionSignUp()">
+            <h2 class="sign-up-text">Sign Up</h2>
+        <mat-form-field class="mat-field-full-width">
+            <input matInput placeholder="Company Name" formControlName="companyName">
+            <mat-error [hidden]="traderForm.controls.companyName.valid || (traderForm.controls.companyName.pristine && traderForm.controls.companyName.untouched)">
+              Company name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="mat-field-full-width">
+            <input matInput placeholder="Full Name" formControlName="fullName">
+            <mat-error [hidden]="traderForm.controls.fullName.valid || (traderForm.controls.fullName.pristine && traderForm.controls.fullName.untouched)">
+              Full name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="mat-field-full-width">
+            <input matInput placeholder="Category" formControlName="category">
+            <mat-error [hidden]="traderForm.controls.category.valid || (traderForm.controls.category.pristine && traderForm.controls.category.untouched)">
+              Category is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="mat-field-full-width">
+            <input matInput placeholder="Post Code" (keyup)="postCodeChange($event)" formControlName="postCode">
+            <mat-error [hidden]="traderForm.controls.postCode.valid || (traderForm.controls.postCode.pristine && traderForm.controls.postCode.untouched)">
+              Post code is <strong>required</strong> and atleast <strong>4</strong> numbers
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="mat-field-full-width">
+            <input matInput placeholder="Address" formControlName="address" ngx-google-places-autocomplete [options]='googlePlaceOptions'  (onAddressChange)="googleAddressChange($event)" (keyup)="addressChange($event)">
+            <mat-icon matSuffix class="help-outline-icon" [hidden]="hideValidationIcon[0]" matTooltip="This address is not yet validated." matTooltipHideDelay="1000" matTooltipPosition="right">help_outline</mat-icon>
+            <mat-icon matSuffix class="check-circle-outline-icon" [hidden]="hideValidationIcon[1]" matTooltip="Google: Address Validated!" matTooltipHideDelay="1000" matTooltipPosition="right">check_circle_outline</mat-icon>
+            <mat-icon matSuffix class="highlight-off-icon" [hidden]="hideValidationIcon[2]" matTooltip="Google: Address Invalid!" matTooltipHideDelay="1000" matTooltipPosition="right">highlight_off</mat-icon>
+            <mat-error [hidden]="traderForm.controls.address.valid || (traderForm.controls.address.pristine && traderForm.controls.address.untouched)">
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="mat-field-full-width">
+            <input matInput type="email" placeholder="Email" formControlName="email">
+            <mat-error [hidden]="traderForm.controls.email.valid || (traderForm.controls.email.pristine && traderForm.controls.email.untouched)">
+              Email is <strong>invalid</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="mat-field-full-width">
+            <input matInput type="tel" placeholder="Phone No." formControlName="phone">
+            <mat-error [hidden]="traderForm.controls.phone.valid || (traderForm.controls.phone.pristine && traderForm.controls.phone.untouched)">
+              Phone number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <div class="mat-field-full-width">
+            <mat-label class="contact-text-label">How would you like to contact in the future?</mat-label>
+            <mat-slide-toggle class="contact-slides" color="primary" formControlName="contactSMS">Contact via SMS</mat-slide-toggle>
+            <mat-slide-toggle class="contact-slides" color="primary" formControlName="contactTelephone">Contact via Telephone</mat-slide-toggle>
+            <mat-slide-toggle class="contact-slides" color="primary" formControlName="contactEmail">Contact via Email</mat-slide-toggle>
+            <mat-slide-toggle class="contact-slides" color="primary" formControlName="contactPost">Contact via Post</mat-slide-toggle>
+            <!-- <button mat-button matSuffix></button> -->
+          </div>
+          <button mat-raised-button class="create-btn" color="primary" type="submit" [disabled]="traderForm.invalid || hideValidationIcon[1]">Create</button>  
+      </form>  
+</div>
+    

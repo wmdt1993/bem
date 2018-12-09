@@ -1,0 +1,40 @@
+p {
+    font-size: 10pt;
+    margin-bottom: 15px;
+}
+
+hr {
+    opacity: 0.3;
+}
+
+.footer {
+    background-color: rgba(93, 105, 112, 1);
+    padding: 4%;
+    color: #fff8f8cc;
+    font-size: 16px;
+}
+
+.footer a {
+    color: #ffffff;
+    font-size: 10pt;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.cookies {
+    padding: 15px 10px 15px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nav>.nav-link {
+    padding: 0 15px 0 15px;
+    border-right: 1px solid rgba(93, 105, 112, 0.25);
+}
+
+.nav>.nav-link:last-child {
+    border-right: none;
+}

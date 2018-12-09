@@ -1,0 +1,104 @@
+.btn {
+    padding: 13px;
+    font-size: 18px;
+}
+
+.form-watermark {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    font-size: 72px;
+}
+
+.special-input {
+    height: 56px;
+    border: solid 1px #808080;
+    background-color: #ffffff;
+    position: relative;
+    padding: 5px;
+    width: 100%;
+}
+
+a.search-switch {
+    color: #287afb;
+    text-shadow: 0 7px 11px rgba(0, 0, 0, 0.41);
+}
+
+a.search-switch:hover {
+    font-size: 20px;
+    text-decoration: none;
+    color: #007bffd6
+}
+
+.form-row-search {
+    padding-top: 1%;
+}
+
+.special-input .label-inactive {
+    position: absolute;
+    top: 20px;
+    padding-left: 12px;
+}
+
+.special-input label {
+    font-weight: 100;
+    z-index: 0;
+}
+
+.special-input .form-control {
+    position: relative;
+    height: 56px;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    z-index: 10;
+}
+
+select.special-input {
+    padding-left: 5px;
+    background-color: aqua;
+}
+
+.has-error {
+    border-color: #a94442 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075) !important;
+}
+
+.input-error {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    color: red;
+}
+
+.spinner {
+    display: block;
+    margin: auto;
+    border: 12px solid #f3f3f3;
+    /* Light grey */
+    border-top: 12px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+
+/*auto complete styling*/
+
+::ng-deep .mat-form-field-label {
+    color: rgba(93, 105, 112, 1) !important;
+}
+
+.large-link {
+    /*padding-left: 10px;
+    font-size: 20px;*/
+    text-shadow: 0 7px 11px rgba(0, 0, 0, 0.41);
+}
+
+.large-link:hover {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+}

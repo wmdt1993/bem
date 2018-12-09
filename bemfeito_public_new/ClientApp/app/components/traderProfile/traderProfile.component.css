@@ -1,0 +1,154 @@
+h1 {
+    margin-bottom: 25px;
+}
+
+agm-map {
+    height: 40%;
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+
+.results {
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
+    margin-top: 0;
+    clear: left;
+}
+
+.icon-color {
+    color: #13a1fd;
+}
+
+.tab-title {
+    background-color: #6c757d;
+}
+
+#check-box {
+    border-width: .2px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-style: solid;
+    border-color: #5d6970;
+}
+
+.profile-card {
+    margin-left: 5%;
+    margin-top: -12%;
+    background-color: #e0e0e0;
+    width: 420px;
+    margin-bottom: 30px;
+    height: 140px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-card-text {
+    font-size: 14px;
+}
+
+.profile-top {
+    height: 58px;
+}
+
+.profile-card-content-left {
+    padding-top: 15px;
+    background-color: white;
+}
+
+.aa {
+    background-color: red;
+}
+
+span.check-list {
+    top: -7px;
+    position: relative;
+    font-size: 14px;
+}
+
+.results__item {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.listing {
+    overflow: hidden;
+    background-color: #f0f0f3;
+    position: relative;
+    margin: 10.5px 5px;
+}
+
+.listing__left-column {
+    background-color: white;
+    padding-right: 20px;
+    margin-right: 76px;
+}
+
+.results__title {
+    margin-bottom: 5px;
+}
+
+.responsive .results__member-stats {
+    margin-top: 10px;
+}
+
+.results__location {
+    float: left;
+}
+
+.listing__stat .pin-tick--blue,
+.listing__stat .pin-tick--grey {
+    margin-right: 2px;
+}
+
+.results__member-since {
+    float: right;
+}
+
+.listing__right-column {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 76px;
+    height: 100%;
+    -webkit-transition: background-color .3s ease-in-out 0s;
+    -moz-transition: background-color .3s ease-in-out 0s;
+    -o-transition: background-color .3s ease-in-out 0s;
+    transition: background-color .3s ease-in-out 0s;
+}
+
+.results__item .feedback-score__average.feedback-score__average--large {
+    margin-top: 6px;
+    font-size: 22px;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.feedback-score__count {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 1.833333333;
+    color: #4d4f49;
+}
+
+.results__item .feedback-score__average.feedback-score__average--large {
+    margin-top: 6px;
+    font-size: 22px;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+#tab-profile {
+    max-width: 80%;
+    margin-left: 10%;
+    margin-top: -8px;
+}
+
+.tab-profile-row {
+    max-width: 100%;
+    padding-top: 18px;
+}
+
+.text-size {
+    font-size: 14px;
+}

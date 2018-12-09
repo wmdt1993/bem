@@ -1,0 +1,25 @@
+.about {
+    margin: -50px 0 20px 0;
+    background-color: rgba(255,255,255,1);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.15);
+}
+
+.about .col {
+    padding:40px;
+}
+
+.about .col p {
+    margin:20px 10px 20px 0;
+}
+
+.red {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.grey {
+    background-color: rgba(93,105,112,1);
+}
+
+.grey h2, .grey p {
+    color: rgba(255,255,255,1);
+}

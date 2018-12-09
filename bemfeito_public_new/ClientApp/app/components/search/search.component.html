@@ -1,0 +1,62 @@
+<nav-menu>
+</nav-menu>
+
+<div id="searc-top-map" style="height:60px;"></div>
+
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" [styles]="stylesmap">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <!-- <agm-marker [latitude]="lat2" [longitude]="lng2"></agm-marker> -->
+</agm-map>
+
+
+
+
+<div class="search position-sticky">
+    <searchTrade [PopulateOnInit]="true"></searchTrade>
+</div>
+
+<div class='row'>
+    <!-- <div class='row results position-sticky'>
+        <searchResult></searchResult>
+    </div> -->
+    <div class="col-8">
+        <searchResult></searchResult>
+    </div>
+    <div class="col-4">
+        <div class="fluid box-right">
+            <div class="box-right-title">
+                <p>Refine your search</p>
+            </div>
+            <div>
+                <p>under construction</p>
+            </div>
+        </div>
+        <div class="fluid box-right">
+            <div class="box-right-title">
+                <p>Keyword search</p>
+            </div>
+            <div>
+                <p>under construction</p>
+            </div>
+        </div>
+        <div class="fluid box-right">
+            <div class="box-right-title">
+                <p>Advanced filter</p>
+            </div>
+            <div>
+                <p>under construction</p>
+            </div>
+        </div>
+        <div class="fluid box-right">
+            <div class="box-right-title">
+                <p>Recently viewed</p>
+            </div>
+            <div>
+                <p>under construction</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer></footer>

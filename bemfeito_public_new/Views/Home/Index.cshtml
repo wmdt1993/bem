@@ -1,0 +1,65 @@
+@{
+    ViewData["Title"] = "Bemfeito";
+}
+
+  <style type="text/css">
+    body, html {
+      height: 100%;
+    }
+    .app-loading {
+      /* position: relative; */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .app-loading .spinner {
+      height: 200px;
+      width: 200px;
+      /* animation: rotate 2s linear infinite; */
+      transform-origin: center center;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .app-loading .spinner .path {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      animation: dash 1.5s ease-in-out infinite;
+      stroke-linecap: round;
+      stroke: #33a5de;
+    }
+    .img-loading {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+  
+  </style>
+
+
+<app>
+   
+
+
+
+<div align="center">
+    <img class="img-loading" src="/Public/bemfeito-logo-v1.png" alt="Bemfeito" width="130px"/>   
+</div>
+
+
+</app>
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+ <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQm4LvZOM4NvMzeoqVmGfyqJO4Y1tXQ5A&libraries=places&sensor=false&language=en&region=pt"></script> -->
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}
